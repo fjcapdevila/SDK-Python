@@ -16,9 +16,9 @@ Todo Pago - módulo SDK-Python para conexión con gateway de pago
  + [Características](#caracteristicas)
     + [Status de la operación](#status)
     + [Consulta de operaciones por rango de tiempo](#statusdate)
-    + [Devolucion](#devolucion)
-    + [Devolucion parcial](#devolucionparcial)
-    + [Formulario hibrido](#formhidrido)
+    + [Devolución](#devolucion)
+    + [Devolución parcial](#devolucionparcial)
+    + [Formulario híbrido](#formhidrido)
     + [Obtener Credenciales](#credenciales)
  + [Diagrama de secuencia](#secuencia)
  + [Tablas de referencia](#tablareferencia)		
@@ -26,7 +26,7 @@ Todo Pago - módulo SDK-Python para conexión con gateway de pago
 
 <a name="instalacion"></a>		
 ## Instalación		
-El SDK utiliza como dependencias *suds-jurko*, *requests* y *xmltodict*. Para instalarlas correr las siguientes lineas en la consola:
+El SDK utiliza como dependencias *suds-jurko*, *requests* y *xmltodict*. Para instalarlas correr las siguientes líneas en la consola:
 ej: pip install suds-jurko <-- instalar la dependencia
 ```bash
 > pip install suds-jurko
@@ -70,7 +70,7 @@ En este caso hay que llamar a sendAuthorizeRequest().
 response = tpc.sendAuthorizeRequest(optionsSAR_comercio, optionsSAR_operacion)
 ```				
 <ins><strong>datos propios del comercio</strong></ins>		
-optionsSAR_comercio debe ser un dicionario con la siguiente estructura:		
+optionsSAR_comercio debe ser un diccionario con la siguiente estructura:		
 <a name="url_ok"></a>		
 <a name="url_error"></a>	
 ```python
@@ -293,7 +293,7 @@ optionsSAR_operacion={
 'CSITPRODUCTDESCRIPTION':"Test Prd Description", #Descripción del producto. CONDICIONAL.	
 'CSITPRODUCTNAME':"TestPrd", #Nombre del producto. CONDICIONAL.		
 'CSITPRODUCTSKU':"SKU1234", #Código identificador del producto. CONDICIONAL.		
-'CSITTOTALAMOUNT':"10.01", #CSITTOTALAMOUNT=CSITUNITPRICE*CSITQUANTITY "999999[.CC]" Con decimales opcional usando el puntos como separador de decimales. No se permiten comas, ni como separador de miles ni como separador de decimales. CONDICIONAL.		
+'CSITTOTALAMOUNT':"10.01", #CSITTOTALAMOUNT=CSITUNITPRICE*CSITQUANTITY "999999[.CC]" Con decimales opcional usando el punto como separador de decimales. No se permiten comas, ni como separador de miles ni como separador de decimales. CONDICIONAL.		
 'CSITQUANTITY':"1", #Cantidad del producto. CONDICIONAL.		
 'CSITUNITPRICE': "10.01", #Formato Idem CSITTOTALAMOUNT. CONDICIONAL.		
 
@@ -301,7 +301,7 @@ optionsSAR_operacion={
 'CSMDD13':"", #Método de Despacho. NO MANDATORIO.		
 'CSMDD14':"", #Customer requires Tax Bill ? (Y/N). NO MANDATORIO.		
 'CSMDD15':"", #Customer Loyality Number. NO MANDATORIO. 		
-'CSMDD16':"", #Promotional / Coupon Code. NO MANDATORIO. #Retail: datos a enviar por cada producto, los valores deben estar separado con #:		
+'CSMDD16':"", #Promotional / Coupon Code. NO MANDATORIO. #Retail: datos a enviar por cada producto, los valores deben estar separados con #:		
 
 ...........................................................		
 ```
@@ -389,7 +389,7 @@ La SDK cuenta con un método para consultar el status de la transacción desde l
 ```python
 optionsGS = {
 'MERCHANT': merchant, #merchant es una variable que contiene al id site 
-'OPERATIONID': operationid # operationid es un variable (id de la operacion a consultar)
+'OPERATIONID': operationid # operationid es una variable (id de la operación a consultar)
 }
 print tpc.getByoperationId(optionsGS)
 ```
@@ -426,7 +426,7 @@ Además, se puede conocer el estado de las transacciones a través del portal [w
 
 <a name="statusdate"></a>
 ####Consulta de operaciones por rango de tiempo
-En este caso hay que llamar a getByRangeDateTime() y devolvera todas las operaciones realizadas en el rango de fechas dado
+En este caso hay que llamar a getByRangeDateTime() y devolverá todas las operaciones realizadas en el rango de fechas dado
 
 ```python
 optionsGBRDT = {
@@ -476,7 +476,7 @@ Si la operación fue realizada correctamente se informará con un código 2011 y
 <a name="devolucionparcial"></a>
 ####Devolución parcial
 
-La SDK dispone de métodos para realizar la devolución parcial, de una transacción realizada a traves de TodoPago.
+La SDK dispone de métodos para realizar la devolución parcial, de una transacción realizada a través de TodoPago.
 
 Se debe llamar al método ```returnRequest``` de la siguiente manera:
 ```python
@@ -561,11 +561,11 @@ El formulario implementado debe contar al menos con los siguientes campos.
 </body>
 ```
 
-**Inizialización y parametros requeridos**<br>
+**Inicialización y parámetros requeridos**<br>
 Para inicializar el formulario se usa window.TPFORMAPI.hybridForm.initForm. El cual permite setear los elementos y ids requeridos.
 
-Para inicializar un ítem de pago, es necesario llamar a window.TPFORMAPI.hybridForm.setItem. Este requiere obligatoriamente el parametro publicKey que corresponde al PublicRequestKey (entregado por el SAR).
-Se sugiere agregar los parametros usuario, e-mail, tipo de documento y numero.
+Para inicializar un ítem de pago, es necesario llamar a window.TPFORMAPI.hybridForm.setItem. Este requiere obligatoriamente el parámetro publicKey que corresponde al PublicRequestKey (entregado por el SAR).
+Se sugiere agregar los parámetros usuario, e-mail, tipo de documento y número.
 
 **Javascript**
 ```js
@@ -605,12 +605,12 @@ function stopLoading() {
 ```
 
 **Callbacks**<br>
-El formulario define callbacks javascript, que son llamados según el estado y la informacion del pago realizado:
-+ customPaymentSuccessResponse: Devuelve response si el pago se realizo correctamente.
-+ customPaymentErrorResponse: Si hubo algun error durante el proceso de pago, este devuelve el response con el codigo y mensaje correspondiente.
+El formulario define callbacks javascript, que son llamados según el estado y la información del pago realizado:
++ customPaymentSuccessResponse: Devuelve response si el pago se realizó correctamente.
++ customPaymentErrorResponse: Si hubo algún error durante el proceso de pago, este devuelve el response con el código y mensaje correspondiente.
 
 ** Boton Pagar con Billetera **
-En el formulario aparecera la posibilidad de utilizar la billetera virtual de todopago 
+En el formulario aparecerá la posibilidad de utilizar la billetera virtual de todopago 
 en un boton que se llama "Boton Pagar con Billetera"
 
 **Ejemplo de Implementación**:
@@ -622,7 +622,7 @@ en un boton que se llama "Boton Pagar con Billetera"
 <a name="credenciales"></a>
 ####Obtener credenciales
 El SDK permite obtener las credenciales "Authentification", "MerchandId" y "Security" de la cuenta de Todo Pago, ingresando el usuario y contraseña.<br>
-Esta funcionalidad es util para obtener los parametros de configuracion dentro de la implementacion.
+Esta funcionalidad es útil para obtener los parámetros de configuración dentro de la implementación.
 
 - Crear una instancia de la clase User:
 ```python
